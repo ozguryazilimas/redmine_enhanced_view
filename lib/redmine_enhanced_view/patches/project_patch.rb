@@ -16,13 +16,19 @@ module RedmineEnhancedView
       module InstanceMethods
 
         def assignable_users_with_redmine_enhanced_view
-          without_rev = assignable_users_without_redmine_enhanced_view
+          if User.current.allowed_to?(:issue_assign_users, self)
+            assignable_users_without_redmine_enhanced_view
+          else
+            types = []
+            types << 'Group' if Setting.issue_group_assignment?
 
-          @assignable_users = if User.current.allowed_to?(:issue_assign_users, self)
-                                without_rev
-                              else
-                                without_rev.to_a.select{|k| k.is_a?(Group)}
-                              end
+            @assignable_users ||= Principal.
+              active.
+              joins(:members => :roles).
+              where(:type => types, :members => {:project_id => id}, :roles => {:assignable => true}).
+              uniq.
+              sorted
+          end
         end
 
       end
