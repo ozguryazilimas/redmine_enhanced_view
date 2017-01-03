@@ -1,3 +1,4 @@
+require 'redmine'
 require 'redmine_enhanced_view'
 
 Redmine::Plugin.register :redmine_enhanced_view do
