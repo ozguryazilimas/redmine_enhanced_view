@@ -8,6 +8,7 @@ Redmine::Plugin.register :redmine_enhanced_view do
   version '0.7'
   url 'http://www.ozguryazilim.com.tr'
   author_url 'http://www.ozguryazilim.com.tr'
+  # works until 3.2.3
   requires_redmine :version_or_higher => '3.0.0'
 
   permission :view_project_members, {:projects => [:show]}, :require => :member
