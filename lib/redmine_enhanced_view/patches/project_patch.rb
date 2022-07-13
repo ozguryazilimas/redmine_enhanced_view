@@ -20,7 +20,10 @@ module RedmineEnhancedView
 
         if tracker
           # Rejects users that cannot the view the tracker
-          roles = Role.where(:assignable => true).select {|role| role.permissions_tracker?(:view_issues, tracker)}
+          roles =
+            Role.where(:assignable => true).select do |role|
+              role.permissions_tracker?(:view_issues, tracker)
+            end
           scope = scope.where(:roles => {:id => roles.map(&:id)})
         end
 

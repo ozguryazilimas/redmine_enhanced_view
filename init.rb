@@ -5,7 +5,7 @@ Redmine::Plugin.register :redmine_enhanced_view do
   name 'Redmine enhanced View plugin'
   author 'Onur Kucuk'
   description 'Redmine plugin to display tree view of some components'
-  version '1.0.0'
+  version '1.1.0'
   url 'http://www.ozguryazilim.com.tr'
   author_url 'http://www.ozguryazilim.com.tr'
   requires_redmine :version_or_higher => '4.0.0'
