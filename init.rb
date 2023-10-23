@@ -1,5 +1,5 @@
 require 'redmine'
-require 'redmine_enhanced_view'
+require_dependency File.join(File.dirname(__FILE__), 'lib/redmine_enhanced_view')
 
 Redmine::Plugin.register :redmine_enhanced_view do
   name 'Redmine enhanced View plugin'
